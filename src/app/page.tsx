@@ -1,5 +1,6 @@
 'use client';
 
+import Loader from '@/components/Loader';
 import { Pagination } from '@/components/Pagination';
 import { Search } from '@/components/Search';
 import { ThemeToggle } from '@/components/ThemeToggle';
@@ -7,7 +8,6 @@ import { getTheme } from '@/lib/theme';
 import { setCharacters } from '@/redux/reducers';
 import { gql, useQuery } from '@apollo/client';
 import { createTheme, Typography, ThemeProvider, CssBaseline, Box, Container, Toolbar, Paper, Grid, Fab } from '@mui/material';
-import Head from 'next/head';
 import Image from 'next/image';
 import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -53,7 +53,7 @@ const Home = () => {
 
   const theme = useMemo(() => createTheme(getTheme(mode)), [mode]);
 
-  if (loading) return <Typography>Loading...</Typography>;
+  if (loading) return <Loader></Loader>;
   if (error) return <Typography>Error: {error.message}</Typography>;
 
   return (
@@ -217,5 +217,6 @@ const Home = () => {
 };
 
 export default Home;
+
 
 
