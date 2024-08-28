@@ -17,7 +17,7 @@ export default function Loader() {
         }}
       >
         <Image
-          src='https://user-images.githubusercontent.com/44013819/109408845-28a0fc80-796c-11eb-9da0-44406ff89ccd.gif'
+          src='/loader.gif'
           alt='Loading...'
           layout='responsive'
           width={300}
