@@ -26,11 +26,30 @@ const GET_CHARACTERS = gql`
   }
 `;
 
+const useDelayedQuery = (query: any, delay: number) => {
+  const { data, loading, error } = useQuery(query);
+  const [delayedLoading, setDelayedLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDelayedLoading(false);
+    }, delay);
+
+    return () => clearTimeout(timer);
+  }, [delay]);
+
+  return {
+    data,
+    loading: loading || delayedLoading,
+    error,
+  };
+};
+
 const Home = () => {
   const [mode, setMode] = useState<'light' | 'dark'>('dark');
   const dispatch = useDispatch();
   const characters = useSelector((state: any) => state.characters.characters);
-  const { data, loading, error } = useQuery(GET_CHARACTERS);
+  const { data, loading, error } = useDelayedQuery(GET_CHARACTERS, 2000);
 
   useEffect(() => {
     if (data) {
@@ -217,6 +236,8 @@ const Home = () => {
 };
 
 export default Home;
+
+
 
 
 
