@@ -27,7 +27,7 @@ const GET_CHARACTERS = gql`
 `;
 
 const Home = () => {
-  const [mode, setMode] = useState<'light' | 'dark'>('light');
+  const [mode, setMode] = useState<'light' | 'dark'>('dark');
   const dispatch = useDispatch();
   const characters = useSelector((state: any) => state.characters.characters);
   const { data, loading, error } = useQuery(GET_CHARACTERS);
